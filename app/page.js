@@ -29,6 +29,7 @@
 //   SheetTrigger,
 // } from "@/components/ui/sheet";
 // import { toast } from "sonner";
+import CategoryList from "./_components/CategoryList";
 import Slider from "./_components/Slider";
 import GlobalApi from "./_utils/GlobalApi";
 export default async function Home() {
@@ -39,8 +40,15 @@ export default async function Home() {
 
   const sliderList = await GlobalApi.getSliders();
 
+  const categoryList = await GlobalApi.getCategoryList();
+
+  console.log(sliderList[1].attributes?.image?.data?.[0]?.attributes?.url);
   return (
-    // sliders
-    <Slider sliderList={sliderList} />
+    <>
+      {/* sliders */}
+      <Slider sliderList={sliderList} />
+      {/* category list */}
+      <CategoryList categoryList={categoryList} />
+    </>
   );
 }
