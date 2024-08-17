@@ -12,6 +12,10 @@ import {
 import ProductItemDetail from "./ProductItemDetail.jsx";
 
 function ProductItem({ product }) {
+  console.log(
+    "products image",
+    product?.attributes?.images?.data?.[0]?.attributes?.url,
+  );
   return (
     <div
       className="p-2 md:p-6
@@ -22,7 +26,7 @@ function ProductItem({ product }) {
     "
     >
       <Image
-        src={product.attributes.images.data[0].attributes.url}
+        src={`${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${product?.attributes?.images?.data?.[0]?.attributes?.url}`}
         width={500}
         height={200}
         alt={product.attributes.name}
@@ -43,7 +47,6 @@ function ProductItem({ product }) {
           ${product.attributes.mrp}
         </h2>
       </div>
-
       <Dialog>
         <DialogTrigger asChild>
           <Button

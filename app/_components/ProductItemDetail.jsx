@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import GlobalApi from "../_utils/GlobalApi";
 import { toast } from "sonner";
-// import { UpdateCartContext } from "../_context/UpdateCartContext";
+import { UpdateCartContext } from "../_context/UpdateCartContext";
 import { getCookie } from "cookies-next";
 // import { useCookies } from 'next-client-cookies'
 
@@ -65,7 +65,8 @@ function ProductItemDetail({ product }) {
     bg-white text-black"
     >
       <Image
-        src={product.attributes.images.data[0].attributes.url}
+        // src={product?.attributes?.images?.data[0]?.attributes?.url}
+        src={`${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${product?.attributes?.images?.data?.[0]?.attributes?.url}`}
         alt="image"
         width={300}
         height={300}
@@ -107,8 +108,7 @@ function ProductItemDetail({ product }) {
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
             <h2 className="text-2xl font-bold">
-              {" "}
-              = ${(quantity * productTotalPrice).toFixed(2)}
+              ${(quantity * productTotalPrice).toFixed(2)}
             </h2>
           </div>
           <Button
