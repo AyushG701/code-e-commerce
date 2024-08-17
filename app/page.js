@@ -32,6 +32,7 @@
 import CategoryList from "./_components/CategoryList";
 import Slider from "./_components/Slider";
 import GlobalApi from "./_utils/GlobalApi";
+import ProductList from "./_components/ProductList.jsx";
 export default async function Home() {
   // const [categoryList, setCategoryList] = useState([]);
   // const onSignOut = () => {
@@ -41,6 +42,7 @@ export default async function Home() {
   const sliderList = await GlobalApi.getSliders();
 
   const categoryList = await GlobalApi.getCategoryList();
+  const productList = await GlobalApi.getAllProducts();
 
   console.log(sliderList[1].attributes?.image?.data?.[0]?.attributes?.url);
   return (
@@ -49,6 +51,9 @@ export default async function Home() {
       <Slider sliderList={sliderList} />
       {/* category list */}
       <CategoryList categoryList={categoryList} />
+
+      {/* Product List */}
+      <ProductList productList={productList} />
     </>
   );
 }
