@@ -63,6 +63,19 @@ const getCartItems = (userId, jwt) =>
       return cartItemsList;
     });
 
+const registerUser = (username, email, password) =>
+  axiosClient.post("/auth/local/register", {
+    username: username,
+    email: email,
+    password: password,
+  });
+
+const SignIn = (email, password) =>
+  axiosClient.post("/auth/local", {
+    identifier: email,
+    password: password,
+  });
+
 export default {
   getCategory,
   getSliders,
@@ -71,4 +84,6 @@ export default {
   getProductsByCategory,
   addToCart,
   getCartItems,
+  registerUser,
+  SignIn,
 };
