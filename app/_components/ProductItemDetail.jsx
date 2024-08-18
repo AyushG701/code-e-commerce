@@ -61,12 +61,12 @@ function ProductItemDetail({ product }) {
 
   return (
     <div
-      className="grid grid-cols-1 md:grid-cols-2 p-7
+      className="grid grid-cols-1 md:grid-cols-2 p-7 gap-5
     bg-white text-black"
     >
       <Image
         // src={product?.attributes?.images?.data[0]?.attributes?.url}
-        src={`${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${product?.attributes?.images?.data?.[0]?.attributes?.url}`}
+        src={`${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${product?.attributes?.images?.data[0]?.attributes?.url}`}
         alt="image"
         width={300}
         height={300}
@@ -126,7 +126,7 @@ function ProductItemDetail({ product }) {
         </div>
         <h2>
           <span className="font-bold">Category:</span>{" "}
-          {product.attributes.categories.data[0].attributes.name}{" "}
+          {product?.attributes?.categories?.data?.[0]?.attributes?.name}
         </h2>
       </div>
     </div>

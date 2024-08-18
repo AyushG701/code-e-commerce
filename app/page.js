@@ -7,7 +7,7 @@
 //   ShoppingBag,
 //   ShoppingBasket,
 // } from "lucide-react";
-// import Image from "next/image";
+import Image from "next/image";
 // import React, { useContext, useEffect, useState } from "react";
 // import Link from "next/link";
 // import {
@@ -33,6 +33,7 @@ import CategoryList from "./_components/CategoryList";
 import Slider from "./_components/Slider";
 import GlobalApi from "./_utils/GlobalApi";
 import ProductList from "./_components/ProductList.jsx";
+import Footer from "./_components/Footer";
 export default async function Home() {
   // const [categoryList, setCategoryList] = useState([]);
   // const onSignOut = () => {
@@ -47,25 +48,27 @@ export default async function Home() {
   console.log(sliderList[1].attributes?.image?.data?.[0]?.attributes?.url);
   return (
     <>
-      {/* sliders */}
-      <Slider sliderList={sliderList} />
-      {/* category list */}
-      <CategoryList categoryList={categoryList} />
+      <div className="p-10 px-5 md:px-16">
+        {/* sliders */}
+        <Slider sliderList={sliderList} />
+        {/* category list */}
+        <CategoryList categoryList={categoryList} />
 
-      {/* Product List */}
-      <ProductList productList={productList} />
+        {/* Product List */}
+        <ProductList productList={productList} />
 
-      {/* Banner  */}
-      <Image
-        src="/banner.png"
-        width={1000}
-        height={300}
-        alt="banner"
-        className="w-full h-[400px] object-contain"
-      />
+        {/* Banner  */}
+        <Image
+          src="/banner.png"
+          width={1000}
+          height={300}
+          alt="banner"
+          className="w-full h-[400px] object-contain"
+        />
 
-      {/* Footer  */}
-      <Footer />
+        {/* Footer  */}
+        <Footer />
+      </div>
     </>
   );
 }

@@ -144,7 +144,7 @@ function Footer() {
               target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"
             >
-              <span className="sr-only">GitHub</span>
+              <span className="sr-only">GitHUB</span>
               <svg
                 className="h-6 w-6"
                 fill="currentColor"

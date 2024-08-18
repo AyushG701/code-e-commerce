@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import GlobalApi from "../_utils/GlobalApi";
+import Link from "next/link";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -55,26 +56,28 @@ const Header = () => {
               <DropdownMenuLabel>Browse Category</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {categoryList.map((category, index) => (
-                <DropdownMenuItem
-                  key={index}
-                  className="flex gap-2 items-center cursor-pointer"
-                >
-                  <Image
-                    src={
-                      category?.attributes?.icon?.data?.[0]?.attributes?.url
-                        ? `${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${category?.attributes?.icon?.data?.[0]?.attributes?.url}`
-                        : "/logo.png"
-                    }
-                    unoptimized={true}
-                    alt="icon"
-                    width={30}
-                    height={30}
-                  />
-                  {console.log(
-                    category?.attributes?.icon?.data?.[0]?.attributes?.url,
-                  )}
-                  <h2>{category?.attributes?.name}</h2>
-                </DropdownMenuItem>
+                <Link href={"/products-category/" + category.attributes.name}>
+                  <DropdownMenuItem
+                    key={index}
+                    className="flex gap-2 items-center cursor-pointer"
+                  >
+                    <Image
+                      src={
+                        category?.attributes?.icon?.data?.[0]?.attributes?.url
+                          ? `${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${category?.attributes?.icon?.data?.[0]?.attributes?.url}`
+                          : "/logo.png"
+                      }
+                      unoptimized={true}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                    />
+                    {console.log(
+                      category?.attributes?.icon?.data?.[0]?.attributes?.url,
+                    )}
+                    <h2>{category?.attributes?.name}</h2>
+                  </DropdownMenuItem>
+                </Link>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
