@@ -73,7 +73,7 @@ function CreateAccount() {
               <LoaderIcon className="animate-spin" />
             ) : (
               "Create an Account"
-            )}{" "}
+            )}
           </Button>
 
           <p>

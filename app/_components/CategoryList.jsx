@@ -5,7 +5,7 @@ import React from "react";
 function CategoryList({ categoryList }) {
   console.log(categoryList[0]?.attributes?.icon?.data?.[0]?.attributes?.url);
   return (
-    <div className="mt-10 mx-[45px]  p-4">
+    <div className="mt-10   p-4">
       <h2 className="text-[#039BE5] font-bold text-2xl mb-5  ">
         Shop by Category
       </h2>
