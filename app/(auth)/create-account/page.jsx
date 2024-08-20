@@ -3,6 +3,7 @@ import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { setCookie } from "cookies-next";
+import { LoaderIcon } from "lucide-react";
 // import { useCookies } from 'next-client-cookies';
 import Image from "next/image";
 import Link from "next/link";

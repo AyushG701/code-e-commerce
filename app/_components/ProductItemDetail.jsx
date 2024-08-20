@@ -27,6 +27,7 @@ function ProductItemDetail({ product }) {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
+
   const addToCart = () => {
     setLoading(true);
     if (!jwt) {
