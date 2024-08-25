@@ -98,6 +98,7 @@ function Header() {
     });
     setSubTotal(total.toFixed(2));
   }, [cartItemList]);
+
   return (
     <div className="p-5 shadow-sm flex justify-between">
       <div className="flex items-center gap-8">
@@ -131,7 +132,7 @@ function Header() {
               >
                 <DropdownMenuItem className="flex gap-4 items-center cursor-pointer">
                   <Image
-                    src={category?.attributes?.icon?.data?.attributes?.url}
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_IMAGE_URL}${category?.attributes?.icon?.data?.[0]?.attributes?.url}`}
                     unoptimized={true}
                     alt="icon"
                     width={30}
@@ -153,6 +154,7 @@ function Header() {
           <input type="text" placeholder="Search" className="outline-none" />
         </div>
       </div>
+
       <div className="flex gap-5 items-center">
         <Sheet>
           <SheetTrigger>

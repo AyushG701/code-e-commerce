@@ -4,7 +4,9 @@ const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
 });
 
-const getCategory = () => axiosClient.get("/categories?populate=*");
+const getCategory = () =>
+  axiosClient.get("/categories?sort[0]=id:asc&populate=*");
+
 const getSliders = () =>
   axiosClient.get("/sliders?populate=*").then((resp) => {
     return resp.data.data;
@@ -26,6 +28,19 @@ const getProductsByCategory = (category) =>
     .then((resp) => {
       return resp.data.data;
     });
+
+const registerUser = (username, email, password) =>
+  axiosClient.post("/auth/local/register", {
+    username: username,
+    email: email,
+    password: password,
+  });
+
+const SignIn = (email, password) =>
+  axiosClient.post("/auth/local", {
+    identifier: email,
+    password: password,
+  });
 
 const addToCart = (data, jwt) =>
   axiosClient.post("/user-carts", data, {
@@ -63,18 +78,40 @@ const getCartItems = (userId, jwt) =>
       return cartItemsList;
     });
 
-const registerUser = (username, email, password) =>
-  axiosClient.post("/auth/local/register", {
-    username: username,
-    email: email,
-    password: password,
+const deleteCartItem = (id, jwt) =>
+  axiosClient.delete("/user-carts/" + id, {
+    headers: {
+      Authorization: "Bearer " + jwt,
+    },
   });
 
-const SignIn = (email, password) =>
-  axiosClient.post("/auth/local", {
-    identifier: email,
-    password: password,
+const createOrder = (data, jwt) =>
+  axiosClient.post("/orders", data, {
+    headers: {
+      Authorization: "Bearer " + jwt,
+    },
   });
+
+const getMyOrder = (userId, jwt) =>
+  axiosClient
+    .get(
+      "/orders?filters[userId][$eq]=" +
+        userId +
+        "&populate[orderItemList][populate][product][populate][images]=url",
+    )
+    .then((resp) => {
+      const responce = resp.data.data;
+      const orderList = responce.map((item) => ({
+        id: item.id,
+        totalOrderAmount: item.attributes.totalOrderAmount,
+        paymentId: item.attributes.paymentId,
+        orderItemList: item.attributes.orderItemList,
+        createdAt: item.attributes.createdAt,
+        status: item.attributes.Status,
+      }));
+
+      return orderList;
+    });
 
 export default {
   getCategory,
@@ -82,8 +119,11 @@ export default {
   getCategoryList,
   getAllProducts,
   getProductsByCategory,
-  addToCart,
-  getCartItems,
   registerUser,
   SignIn,
+  addToCart,
+  getCartItems,
+  deleteCartItem,
+  createOrder,
+  getMyOrder,
 };
